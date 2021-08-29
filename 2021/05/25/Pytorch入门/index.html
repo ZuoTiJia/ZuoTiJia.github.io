@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Pytorch入门 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="安装国内的话 1pip install torch torchvision torchaudio -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;  之后运行如下代码测试 12import torchprint(torch.__version__)  我的运行结果： 1.7.1 这就说明安装成功了 实现一个简单的线性回归训练我这里示例用的是波士顿房价预测 数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pytorch入门">
@@ -20,83 +34,162 @@
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ai-studio-static-online.cdn.bcebos.com/f9117a5a34d44b1eab85147e62b4e6295e485e48d79d4a03adaa14a447ffd230">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<link rel="canonical" href="http://example.com/2021/05/25/Pytorch%E5%85%A5%E9%97%A8/">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
+  <title>Pytorch入门 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-Pytorch入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/05/25/Pytorch%E5%85%A5%E9%97%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-05-25T08:39:12.000Z" itemprop="datePublished">2021-05-25</time>
-</a>
-    
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Pytorch入门
-    </h1>
-  
 
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/25/Pytorch%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Pytorch入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-25 16:39:12 / Modified: 16:51:47" itemprop="dateCreated datePublished" datetime="2021-05-25T16:39:12+08:00">2021-05-25</time>
+            </span>
+
+          
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>国内的话</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install torch torchvision torchaudio -i https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure>
@@ -198,134 +291,186 @@
 
 <h2 id="代码汇总"><a href="#代码汇总" class="headerlink" title="代码汇总"></a>代码汇总</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import torch.nn as nn 			#神经网络工具箱</span><br><span class="line">import torch.utils.data as Data #加载数据用的</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">device = torch.device(&#x27;cuda:0&#x27; if torch.cuda.is_available() else &#x27;cpu&#x27;) #规定训练设备</span><br><span class="line">input_size = 13	#这是输入网络的因素数量</span><br><span class="line">output_size = 1 #输出的结果的数量</span><br><span class="line">num_epochs = 200 #训练的轮数</span><br><span class="line">learning_rate = 0.01 #学习率</span><br><span class="line">batch_size = 100 #把数据乱序拆分训练，每一份是100</span><br><span class="line"></span><br><span class="line">data = np.fromfile(&#x27;housing.data&#x27;, dtype=float, sep=&#x27; &#x27;)</span><br><span class="line">data = data.reshape(-1, 14)</span><br><span class="line"></span><br><span class="line">def Nomalize(data, ratio=0.8): #ratio是训练集占比</span><br><span class="line">    offset = int(data.shape[0]*ratio) #计算训练集样本数量</span><br><span class="line">    # 归一化操作</span><br><span class="line">    train_data = data[:offset]</span><br><span class="line">    max, min = train_data.max(axis=0), train_data.min(axis=0)</span><br><span class="line">    for i in range(data.shape[1]-1):</span><br><span class="line">        data[:, i] = (data[:, i]-min[i])/(max[i]-min[i])</span><br><span class="line">	#</span><br><span class="line">    data = torch.from_numpy(data)#从numpy array转到torch的tensor</span><br><span class="line">    #划分训练集和测试集</span><br><span class="line">    train_data = data[:offset]</span><br><span class="line">    test_data = data[offset:]</span><br><span class="line">    return train_data, test_data</span><br><span class="line"></span><br><span class="line">class HouseDataset(torch.utils.data.Dataset):</span><br><span class="line">    def __init__(self, data):</span><br><span class="line">        self.data = data.float()</span><br><span class="line">    def __getitem__(self, item): #提供索引访问方法 类似 set[0]</span><br><span class="line">        x = self.data[item][:-1]</span><br><span class="line">        y = self.data[item][-1:]</span><br><span class="line">        return x, y              #返回的是输入因素和输出因素</span><br><span class="line">    def __len__(self):</span><br><span class="line">        return len(self.data)    #返回的是数据集的长度</span><br><span class="line"></span><br><span class="line">train_data, test_data = Nomalize(data) #调用写的归一化函数</span><br><span class="line">train_dataset = HouseDataset(train_data)</span><br><span class="line">test_dataset = HouseDataset(test_data)</span><br><span class="line"></span><br><span class="line">#batch_size就是我们之前定义的每一小份的份数,shuffle是打乱顺序的意思</span><br><span class="line">train_loader = torch.utils.data.DataLoader(dataset=train_dataset,</span><br><span class="line">                                           batch_size=batch_size, shuffle=True)</span><br><span class="line">test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=len(test_dataset))</span><br><span class="line"></span><br><span class="line">print(train_dataset)</span><br><span class="line">class Net(nn.Module):</span><br><span class="line">    def __init__(self, inputsize):</span><br><span class="line">        super(Net, self).__init__() 			#这行必须写，就当是套路就行了</span><br><span class="line">        self.linear = nn.Linear(input_size, output_size) 	#这个网络里只有一个线性层</span><br><span class="line">    def forward(self, x):						#向前传播</span><br><span class="line">        return self.linear(x)</span><br><span class="line"></span><br><span class="line">net = Net(input_size).to(device) #把模型丢到预定义的设备中</span><br><span class="line">criterion = nn.MSELoss()</span><br><span class="line"># 这里第一个参数是模型中要优化的参数，pytorch会自动构建</span><br><span class="line">optimizer = torch.optim.SGD(net.parameters(), lr=learning_rate)</span><br><span class="line"></span><br><span class="line">total_step = len(train_loader)  # 每一轮训练的份数</span><br><span class="line">for epoch in range(num_epochs):</span><br><span class="line">    for i, (x, y) in enumerate(train_loader):</span><br><span class="line">        x = x.to(device)</span><br><span class="line">        y = y.to(device)</span><br><span class="line"></span><br><span class="line">        out = net(x)</span><br><span class="line">        loss = criterion(out, y)</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()  # 这个是将计算图中所有梯度清零</span><br><span class="line">        loss.backward()  # 从后往前计算梯度</span><br><span class="line">        optimizer.step()  # 优化器优化</span><br><span class="line"></span><br><span class="line">        # print(&#x27;Epoch [&#123;&#125;/&#123;&#125;], Step [&#123;&#125;/&#123;&#125;], Loss: &#123;:.4f&#125;&#x27;</span><br><span class="line">        #      .format(epoch + 1, num_epochs, i + 1, total_step, loss.item()))</span><br><span class="line"></span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">with torch.no_grad(): #因为我们要测试就不需要计算梯度了</span><br><span class="line">    for i, (x, y) in enumerate(test_loader):</span><br><span class="line">        x = x.to(device)</span><br><span class="line">        out = net(x)</span><br><span class="line">        y = y.numpy()</span><br><span class="line">        out = out.cpu().detach().numpy()</span><br><span class="line">        out.shape = (-1, 1)</span><br><span class="line">        y.shape = (-1, 1)</span><br><span class="line">        plt.plot(out, label=&#x27;拟合&#x27;)</span><br><span class="line">        plt.plot(y, label=&#x27;原始数据&#x27;)</span><br><span class="line">        plt.show()</span><br></pre></td></tr></table></figure>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/05/25/Pytorch%E5%85%A5%E9%97%A8/" data-id="ckp3sg6w80000kot38d279fhp" data-title="Pytorch入门" class="article-share-link">Share</a>
-      
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/25/%E7%9C%8BLinus%E9%87%87%E8%AE%BF%E5%90%8E%E7%9A%84%E5%8F%8D%E6%80%9D/" rel="prev" title="看Linus采访后的反思">
+      <i class="fa fa-chevron-left"></i> 看Linus采访后的反思
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/25/%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%EF%BC%8C%E8%AE%A9%E7%94%9F%E6%B4%BB%E6%9C%89%E7%82%B9%E6%84%8F%E6%80%9D/" rel="next" title="开始写博客，让生活有点意思">
+      开始写博客，让生活有点意思 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E8%AE%AD%E7%BB%83"><span class="nav-number">2.</span> <span class="nav-text">实现一个简单的线性回归训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%A7%84%E5%AE%9A%E8%AE%AD%E7%BB%83%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">1.规定训练参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">4.</span> <span class="nav-text">2.加载数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9E%84%E5%BB%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">5.</span> <span class="nav-text">3.构建网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%AE%9E%E4%BE%8B%E5%8C%96%E7%BD%91%E7%BB%9C%E5%92%8C%E4%BC%98%E5%8C%96%E5%99%A8%EF%BC%8C%E5%AE%9A%E4%B9%89%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">4.实例化网络和优化器，定义损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%BC%80%E5%A7%8B%E8%AE%AD%E7%BB%83"><span class="nav-number">7.</span> <span class="nav-text">5.开始训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%94%BB%E5%9B%BE%E7%9C%8B%E7%9C%8B%E6%8B%9F%E5%90%88%E7%8A%B6%E5%86%B5"><span class="nav-number">8.</span> <span class="nav-text">6.画图看看拟合状况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%B1%87%E6%80%BB"><span class="nav-number">9.</span> <span class="nav-text">代码汇总</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2021/05/25/%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%EF%BC%8C%E8%AE%A9%E7%94%9F%E6%B4%BB%E6%9C%89%E7%82%B9%E6%84%8F%E6%80%9D/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          开始写博客，让生活有点意思
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/05/25/%E7%9C%8BLinus%E9%87%87%E8%AE%BF%E5%90%8E%E7%9A%84%E5%8F%8D%E6%80%9D/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">看Linus采访后的反思</div>
-    </a>
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li></ul>
-    </div>
-  </div>
+<script src="/js/schemes/muse.js"></script>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/05/25/%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B/">学习历程</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/25/%E5%BC%80%E5%A7%8B%E5%86%99%E5%8D%9A%E5%AE%A2%EF%BC%8C%E8%AE%A9%E7%94%9F%E6%B4%BB%E6%9C%89%E7%82%B9%E6%84%8F%E6%80%9D/">开始写博客，让生活有点意思</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/25/Pytorch%E5%85%A5%E9%97%A8/">Pytorch入门</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/25/%E7%9C%8BLinus%E9%87%87%E8%AE%BF%E5%90%8E%E7%9A%84%E5%8F%8D%E6%80%9D/">看Linus采访后的反思</a>
-          </li>
-        
-          <li>
-            <a href="/2021/05/20/test/">test</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+<script src="/js/next-boot.js"></script>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
 </body>
 </html>
