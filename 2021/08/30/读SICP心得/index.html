@@ -20,30 +20,32 @@
     var CONFIG = {"hostname":"mzxws.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前进，不过是盲从进步，是区区幻象">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZuoTiJia">
-<meta property="og:url" content="http://mzxws.top/index.html">
+  <meta name="description" content="《计算机程序的构造与解释》是MIT的计算机入门书。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读SICP心得">
+<meta property="og:url" content="http://mzxws.top/2021/08/30/%E8%AF%BBSICP%E5%BF%83%E5%BE%97/index.html">
 <meta property="og:site_name" content="ZuoTiJia">
-<meta property="og:description" content="前进，不过是盲从进步，是区区幻象">
+<meta property="og:description" content="《计算机程序的构造与解释》是MIT的计算机入门书。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-30T13:49:11.000Z">
+<meta property="article:modified_time" content="2021-08-30T13:50:23.753Z">
 <meta property="article:author" content="ZuoTiJia">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://mzxws.top/">
+<link rel="canonical" href="http://mzxws.top/2021/08/30/%E8%AF%BBSICP%E5%BF%83%E5%BE%97/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>ZuoTiJia</title>
+  <title>读SICP心得 | ZuoTiJia</title>
   
 
 
@@ -136,9 +138,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -154,10 +157,9 @@
       <meta itemprop="name" content="ZuoTiJia">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/30/%E8%AF%BBSICP%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">读SICP心得</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          读SICP心得
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -181,172 +183,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>《计算机程序的构造与解释》是MIT的计算机入门书。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/30/%E8%AF%BBSICP%E5%BF%83%E5%BE%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
+        <p>《计算机程序的构造与解释》是MIT的计算机入门书。</p>
+<span id="more"></span>
+
+<p>​        SICP这本书采用的是scheme（lisp语言家族）语言教学。很多人入门计算机的时候纠结语言的语法，这无疑是舍本逐末。而lisp这个短小精悍的语言向我们展示了完成程序设计根本不需要多少花里胡哨的语法。控制表达式仅需要cond或if(cond 和 if可以相互转化)，过程定义需要lambda，外加一些简简单单的基本过程。</p>
+<p>​        粘合数据的方法也仅靠基本过程cons、car、cdr，没有其他语言的struct、class，就是简简单单的序对就可以组合成任意一种抽象数据。有种道生一，一生二，二生三，三生万物的玄妙感。</p>
+<p>​        这本书开门见山地告诉我们，对于一个程序设计语言，先掌握构成她的基本元素、组合方式、抽象手段。</p>
+<p>​        在介绍lisp语法之外，告知我们递归计算过程和迭代计算过程的区别，这一区别不在语法意义上，而是在计算意义上的。迭代计算过程中，函数的参数就已经保存了所有需要的状态，而递归计算过程，需要解释器或其他方法来隐式地维护中间的状态。</p>
+<p>​        还简明扼要的介绍了函数式编程，其实就是本书的第一个计算模型——代换模型。在这一模型中， 过程对于相同的参数输入，总是有相同的值，这使得我们可以一步步分解复杂的过程为基本过程的组合，介绍了map，fold，filter等函数式编程中的重要过程。</p>
+<p>​        到了第二章，介绍了一个重要的概念闭包。这个闭包与抽象代数中，运算符的封闭性类似。一个类型的数据经过某种操作，组合还是这一类型，然后利用这一特性，不断构建更复杂的东西。</p>
+<p>​        然后介绍了抽象数据的分层，这是掌控程序设计复杂性的重要方法。随后，向我们揭示了，在函数式程序设计中，表示一个数据仅需要她如何构造，如何获得她的组成部分即可。</p>
+<p>​        随后进一步了解类型系统的设计，介绍了一种重要的方法——消息传递。这一设计方法，像面向对象语言中提供的object.act()语法。同时有介绍了塔型的类型层次结构，跟面向对象概念中的基类，派生类类似。可见，编程语言的概念总是想通的，这些思想跟用什么语言是无关的。</p>
+<p>​        代换模型虽然简单，而且似乎也够用了。但是当我们把程序联系到现实生活，就会发现编程的困难。因为人类把世界看成一个一个的对象，他是有状态的。因此我们引入了一个新的操作——赋值操作，通过这个操作来改变所要联系的实体的状态。同时代换模型已经解释不了赋值操作对程序设计带来的改变了，于是介绍了另一种计算模型——环境模型。赋值操作给模拟现实世界带来了方便，但也带来大量的问题，最重要的就是时间问题。用赋值操作，就不得不考虑时间发生的先后，而函数式编程显然没有这个问题。于是本书给我们初步介绍了并发问题，提出了用互斥量解决其中的一部分。</p>
+<p>​        随后，又像我们介绍了流，流可以看做延时求值的表。只有用到cdr的时候，cdr部分才求值。然后定义流的map，fold，filter，这样就能营造一种无穷表的假象，按需计算。同时强迫求值时，还将结果缓存，避免多次求值。</p>
+<p>​        到了本书最震撼的部分了。本书指导我们用lisp写一个lisp求值器，实现自举。这一部分能让你领悟了lisp采用s表达式的形式的妙处，实际上输入一个s表达式，lisp解释器会把他解析成序列的结构，不需要我们再做词法分析，同时由于lisp表达式是如此简单，我们仅需一通car，cdr就能提取嵌套的表达式，很方便就能设计解释器。本书带我们实现了一个迷你的解释器，解释了本书的封面，eval和apply的循环，eval 向 apply 传递过程和参数，apply向eval传递环境和表达式，他们互相调用，又自己调用自己。让人情不自禁的想到太极图，衔尾蛇，艾舍尔的《画手》，这真的是最让人感到震撼的地方，一个语言竟然自己实现了他自己。</p>
+<p>​        随后，本书指导我们为我们实现的迷你lisp添加特性，如动态作用域，惰性求值。告诉我们一个语言的特性并不是越多越好，每个特性之间会相互影响，这些特性的组合可能对程序设计来说是一场灾难（说的就是你C++）。</p>
+<p>​        之后带我们实现了一个逻辑程序设计语言，主要利用模式匹配方法。用and、or、not组合，并且可以为组合命名。并且提出了封闭世界假说“凡是认知外的都不是真的”。</p>
+<p>​        最后一章揭开了lisp语言的神秘面纱，用寄存器机器来执行过程。首先是用寄存器机器来执行gcd算法</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name"><span class="builtin-name">gcd</span></span> a b)</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> b <span class="number">0</span>)</span><br><span class="line">      a</span><br><span class="line">      (<span class="name"><span class="builtin-name">gcd</span></span> b (<span class="name"><span class="builtin-name">remainder</span></span> a b))))</span><br></pre></td></tr></table></figure>
+
+<p>​        我们可以看到他的返回值的形状与该函数一样，那我们只需简单的把数据在寄存器上移动就可以执行这一过程，这就是迭代计算过程。</p>
+<p>随后演示了阶乘的递归计算</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">factorial</span> n)</span><br><span class="line">  (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">1</span>)</span><br><span class="line">      n</span><br><span class="line">      (<span class="name"><span class="builtin-name">*</span></span> n (<span class="name">factorial</span> (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>))))</span><br></pre></td></tr></table></figure>
+
+<p>​        我们注意，这不能通过数据在寄存器上的移动来完成计算，因为寄存器始终是有限的，而我们factorial机器里面嵌套着factorial机器，因此我们需要一种额外的数据结构——栈来保存当前机器的状态，然后执行下一个机器。用有限的东西来营造了无穷的假象。</p>
+<p>之后又带我们了解了垃圾回收的两个简单算法。</p>
+<p>这本书的第四章和第五章很难，习题就有用lisp描述一个机器语言，然后把lisp编译成这个机器语言，由于自身的能力原因，我还不能完成这项困难的任务。</p>
+<p>​        纵观全书，环环相扣，引人入胜。恰到好处地介绍了，程序设计中常遇的问题，又给更深层次的研究（垃圾回收，并发编程，面向对象，软件工程，编译原理，函数式编程，编程语言设计）埋下了伏笔，不愧是优秀地计算机入门书。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://mzxws.top/2021/05/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ZuoTiJia">
-      <meta itemprop="description" content="前进，不过是盲从<br>进步，是区区幻象">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZuoTiJia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/20/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-20 21:12:15" itemprop="dateCreated datePublished" datetime="2021-05-20T21:12:15+08:00">2021-05-20</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://mzxws.top/2021/01/25/Pytorch%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ZuoTiJia">
-      <meta itemprop="description" content="前进，不过是盲从<br>进步，是区区幻象">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZuoTiJia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/25/Pytorch%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Pytorch入门</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-25 16:39:12" itemprop="dateCreated datePublished" datetime="2021-01-25T16:39:12+08:00">2021-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-30 16:40:03" itemprop="dateModified" datetime="2021-08-30T16:40:03+08:00">2021-08-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文记录pytorch的入门使用，并且训练一个简单的线性回归模型。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/25/Pytorch%E5%85%A5%E9%97%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/20/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
